@@ -1,0 +1,4 @@
+- name: licenses
+  path: LICENSE
+- name: licenses
+  path: THIRD_PARTY_NOTICES.md
