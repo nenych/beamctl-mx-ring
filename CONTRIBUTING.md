@@ -27,6 +27,7 @@ There are no automated tests; describe in the pull request how you checked the c
 | `package/actionicons/`, `package/actionsymbols/` | one SVG per action, named after the action; the two folders hold identical files |
 | `package/metadata/` | plugin manifest and icon |
 | `assets.yml` | files copied into the package (licences) |
+| `docs/` | README images: each action icon placed on a dark circle; update the matching file when an icon changes |
 
 ## Guidelines
 
