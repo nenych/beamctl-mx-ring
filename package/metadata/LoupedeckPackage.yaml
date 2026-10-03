@@ -1,0 +1,12 @@
+type: plugin4
+name: Beamctl
+version: 0.1.0
+displayName: Beamctl
+description: Control a Logitech Litra Beam LX light
+minimumLoupedeckVersion: 6.1
+
+pluginType: remote
+pluginRuntime: nodejs
+entryPoint: index.mjs
+
+pluginCapabilities:
