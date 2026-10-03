@@ -61,13 +61,16 @@ export class BeamctlAdjustment extends AdjustmentAction {
     public displayName: string,
     public description: string,
     private readonly args: string[],
-    private readonly step: number
+    private readonly step: number,
+    private readonly unit = 1
   ) {
     super();
   }
 
   // Each call to the light takes 100-400 ms over Bluetooth, so ticks that
-  // arrive meanwhile are summed and sent as one relative change.
+  // arrive meanwhile are summed and sent as one relative change. `step` may be
+  // a fraction of `unit`, the smallest change beamctl accepts: only whole
+  // units are sent and the rest stays in `pending` for the next tick.
   async execute(event: AdjustmentActionExecuteEvent) {
     this.pending += event.tick * this.step;
     if (this.busy) {
@@ -75,13 +78,16 @@ export class BeamctlAdjustment extends AdjustmentAction {
     }
     this.busy = true;
     try {
-      while (this.pending !== 0) {
-        const delta = this.pending;
-        this.pending = 0;
+      for (let delta = this.wholeUnits(); delta !== 0; delta = this.wholeUnits()) {
+        this.pending -= delta;
         await beamctl(...this.args, delta > 0 ? `+${delta}` : `${delta}`);
       }
     } finally {
       this.busy = false;
     }
+  }
+
+  private wholeUnits(): number {
+    return Math.trunc(this.pending / this.unit) * this.unit;
   }
 }
