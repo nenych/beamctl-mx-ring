@@ -6,7 +6,7 @@ The plugin is deliberately a thin wrapper: it maps Actions Ring actions to `beam
 
 ## Development
 
-Requires macOS, Node.js 22 or newer, Logi Options+ and `beamctl` installed (see the README).
+Requires macOS or Windows, Node.js 22 or newer, Logi Options+ and `beamctl` installed (see the README).
 
 ```
 npm install
@@ -14,7 +14,7 @@ npm run build     # type-check and bundle into dist/
 npm run link      # symlink dist/ into the Logi Plugin Service and reload the plugin
 ```
 
-Run `npm run build && npm run link` after each change. Logs: `~/Library/Application Support/Logi/LogiPluginService/Logs/plugin_logs/Beamctl.log`.
+Run `npm run build && npm run link` after each change. Logs on macOS: `~/Library/Application Support/Logi/LogiPluginService/Logs/plugin_logs/Beamctl.log`.
 
 There are no automated tests; describe in the pull request how you checked the change in the Actions Ring.
 

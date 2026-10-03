@@ -24,11 +24,11 @@ Good to know:
 
 ## Install
 
-You need macOS, Logi Options+ 2.2 or newer and, to build the plugin, Node.js 22 or newer.
+You need macOS or Windows, Logi Options+ 2.2 or newer and, to build the plugin, Node.js 22 or newer. Windows support is new and has not been tried on a real machine yet.
 
 Building this project requires the Logitech Actions SDK. Use of the Logitech SDK is subject to Logitech’s applicable developer terms.
 
-1. **Install beamctl** by following [its README](https://github.com/nenych/beamctl#install), and check that `beamctl status` prints the state of your light. The plugin looks for the binary in `~/.local/bin`, `/opt/homebrew/bin`, `/usr/local/bin` and `~/go/bin`, in that order.
+1. **Install beamctl** by following [its README](https://github.com/nenych/beamctl#install), and check that `beamctl status` prints the state of your light. The plugin looks for the binary in `~/.local/bin`, `/opt/homebrew/bin`, `/usr/local/bin` and `~/go/bin`, in that order, and then on `PATH`. On Windows `~` is your user folder, so `go install` puts `beamctl.exe` where the plugin finds it.
 
 2. **Build and load the plugin:**
 
@@ -57,7 +57,7 @@ Using it:
 
 ## Presets
 
-A preset is a named combination of settings, stored by beamctl in `~/.config/beamctl/presets.json`:
+A preset is a named combination of settings, stored by beamctl in `~/.config/beamctl/presets.json` (`%USERPROFILE%\.config\beamctl\presets.json` on Windows):
 
 ```json
 {
@@ -70,8 +70,8 @@ With this file the plugin offers two extra actions, **Preset: call** and **Prese
 
 ## If something does not work
 
-- Run `beamctl status` in Terminal. If that fails, the problem is between beamctl and the light, not in the plugin.
-- Look at the plugin log: `~/Library/Application Support/Logi/LogiPluginService/Logs/plugin_logs/Beamctl.log`.
+- Run `beamctl status` in a terminal. If that fails, the problem is between beamctl and the light, not in the plugin.
+- Look at the plugin log. On macOS it is `~/Library/Application Support/Logi/LogiPluginService/Logs/plugin_logs/Beamctl.log`.
 
 ## Contributing
 

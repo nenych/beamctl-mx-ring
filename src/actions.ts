@@ -6,30 +6,36 @@ import os from 'os';
 import path from 'path';
 import { promisify } from 'util';
 
-// The beamctl CLI is installed separately. The Logi Plugin Service runs with a
-// launchd PATH, so look in the usual install locations instead of by name.
+const BINARY = process.platform === 'win32' ? 'beamctl.exe' : 'beamctl';
+
+// The beamctl CLI is installed separately. On macOS the Logi Plugin Service
+// runs with a launchd PATH, so look in the usual install locations first.
 const LOCATIONS = [
-  path.join(os.homedir(), '.local', 'bin', 'beamctl'),
+  path.join(os.homedir(), '.local', 'bin', BINARY),
   '/opt/homebrew/bin/beamctl',
   '/usr/local/bin/beamctl',
-  path.join(os.homedir(), 'go', 'bin', 'beamctl'),
+  path.join(os.homedir(), 'go', 'bin', BINARY),
 ];
 
 // Checked on every call so that installing beamctl needs no plugin reload.
+// When it is in none of the locations, the bare name leaves the lookup to PATH.
 function beamctlPath(): string {
-  return LOCATIONS.find((location) => existsSync(location)) ?? LOCATIONS[0]!;
+  return LOCATIONS.find((location) => existsSync(location)) ?? BINARY;
 }
 
 const run = promisify(execFile);
 
+// windowsHide keeps a console window from flashing up on Windows for every
+// call. The colour picker is run without it, because starting a process with
+// its windows hidden may hide the picker's dialog as well.
 async function beamctl(...args: string[]): Promise<void> {
-  await run(beamctlPath(), args);
+  await run(beamctlPath(), args, { windowsHide: !args.includes('pick') });
 }
 
 /** Preset names from ~/.config/beamctl/presets.json; reading them does not touch the light. */
 export function presetNames(): string[] {
   try {
-    return execFileSync(beamctlPath(), ['preset'], { encoding: 'utf8' }).split('\n').filter(Boolean);
+    return execFileSync(beamctlPath(), ['preset'], { encoding: 'utf8', windowsHide: true }).split('\n').filter(Boolean);
   } catch (error) {
     console.error('Cannot read beamctl presets:', (error as Error).message);
     return [];
