@@ -26,6 +26,8 @@ Good to know:
 
 You need macOS, Logi Options+ 2.2 or newer and, to build the plugin, Node.js 22 or newer.
 
+Building this project requires the Logitech Actions SDK. Use of the Logitech SDK is subject to Logitech’s applicable developer terms.
+
 1. **Install beamctl** by following [its README](https://github.com/nenych/beamctl#install), and check that `beamctl status` prints the state of your light. The plugin looks for the binary in `~/.local/bin`, `/opt/homebrew/bin`, `/usr/local/bin` and `~/go/bin`, in that order.
 
 2. **Build and load the plugin:**
