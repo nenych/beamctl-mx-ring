@@ -24,7 +24,7 @@ Good to know:
 
 ## Install
 
-You need macOS or Windows, Logi Options+ 2.2 or newer and, to build the plugin, Node.js 22 or newer. Windows support is new and has not been tried on a real machine yet.
+You need macOS or Windows, Logi Options+ 2.2 or newer and, to build the plugin, Node.js 22 or newer.
 
 Building this project requires the Logitech Actions SDK. Use of the Logitech SDK is subject to Logitech’s applicable developer terms.
 
