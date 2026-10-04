@@ -1,8 +1,14 @@
 # beamctl-mx-ring
 
-Control a Logitech Litra Beam LX light from the Actions Ring of an MX Master 4 or another MX device: switch it on and off, change brightness and colour temperature with the scroll wheel, pick a colour for the back light, and apply saved presets.
+A Logi Options+ plugin that controls a Logitech Litra Beam LX light from the Actions Ring of a Logitech MX Master 4: switch the light on and off, change brightness and colour temperature with the scroll wheel, pick a colour for the RGB backlight, and apply saved presets.
 
-The plugin is a thin layer on top of **[beamctl](https://github.com/nenych/beamctl)**, the command-line tool that actually talks to the light over Bluetooth or USB. You need beamctl installed for the plugin to do anything.
+The plugin does not talk to the light itself. Every action runs **[beamctl](https://github.com/nenych/beamctl)**, a command-line tool that communicates with the Litra Beam LX over Bluetooth or USB, so beamctl has to be installed:
+
+```
+Actions Ring  →  beamctl-mx-ring  →  beamctl  →  Litra Beam LX
+```
+
+It has been used with an MX Master 4; Logi Options+ offers the Actions Ring on other MX devices as well. beamctl-mx-ring is an independent open-source project and is not made by Logitech.
 
 ## What the bubbles do
 
@@ -13,7 +19,7 @@ The plugin is a thin layer on top of **[beamctl](https://github.com/nenych/beamc
 | <img src="docs/temperature.svg" width="48" alt=""> | **Temperature** | Point at the bubble and roll the scroll wheel to make the light warmer (more yellow) or cooler (more blue), anywhere between 2700 K and 6500 K. |
 | <img src="docs/back_toggle.svg" width="48" alt=""> | **Toggle Back Light** | Click to turn the coloured glow on the back of the light on or off. |
 | <img src="docs/back_brightness.svg" width="48" alt=""> | **Back Brightness** | Point at the bubble and roll the scroll wheel to make the back glow stronger or weaker. |
-| <img src="docs/back_color.svg" width="48" alt=""> | **Back Color** | Click to open the macOS colour picker. Choose a colour and press OK: the back light switches to it and turns on. Cancel leaves everything as it was. |
+| <img src="docs/back_color.svg" width="48" alt=""> | **Back Color** | Click to open the system colour picker. Choose a colour and press OK: the back light switches to it and turns on. Cancel leaves everything as it was. |
 | | **Preset: _name_** | Click to apply a saved look in one go, for example brightness and temperature for video calls. You get one such action for every preset you define (see [Presets](#presets)). |
 
 Good to know:
@@ -24,7 +30,7 @@ Good to know:
 
 ## Install
 
-You need macOS or Windows, Logi Options+ 2.2 or newer and, to build the plugin, Node.js 22 or newer.
+You need macOS or Windows, Logi Options+ 2.2 or newer and, to build the plugin, Node.js 22 or newer. There is no Linux version: Logi Options+ does not exist for Linux, although beamctl itself works there.
 
 Building this project requires the Logitech Actions SDK. Use of the Logitech SDK is subject to Logitech’s applicable developer terms.
 
