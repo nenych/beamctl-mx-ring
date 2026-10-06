@@ -2,6 +2,8 @@
 
 A Logi Options+ plugin that controls a Logitech Litra Beam LX light from the Actions Ring of a Logitech MX Master 4: switch the light on and off, change brightness and colour temperature with the scroll wheel, pick a colour for the RGB backlight, and apply saved presets.
 
+![beamctl MX Ring demo](docs/beamctl-mx-ring-demo.gif)
+
 The plugin does not talk to the light itself. Every action runs **[beamctl](https://github.com/nenych/beamctl)**, a command-line tool that communicates with the Litra Beam LX over Bluetooth or USB, so beamctl has to be installed:
 
 ```
